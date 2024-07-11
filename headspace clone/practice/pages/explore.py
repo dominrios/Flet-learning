@@ -10,6 +10,7 @@ def build_explore():
                 Container(
                     Text("explorethe orld", color="blue", size=30),
                     height= 200,
+                    width=500,
                     bgcolor="orange"
                 )
             ],

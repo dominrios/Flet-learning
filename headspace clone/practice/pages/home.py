@@ -17,5 +17,6 @@ def build_home():
             alignment=MainAxisAlignment.START,
             expand=True  # Ensure Column takes full height available
         ),
-
+    bgcolor="green",
+    expand = True,
     )

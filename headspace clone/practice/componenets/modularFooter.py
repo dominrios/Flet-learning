@@ -1,5 +1,7 @@
+#modularFooter.py
 import flet as ft
 from flet import *
+from componenets.styles import get_color_styles  # Import the get_color_styles function
 
 class Footer:
     def __init__(self, page, theme, focus):
@@ -10,12 +12,7 @@ class Footer:
             icons.BOOKMARK_OUTLINE_ROUNDED: ["/saved", "Saved"],
             icons.PERSON_OUTLINE_ROUNDED: ["/profile", "Profile"]
         }
-        self.color_styles = {
-            "border" : "#e8e8e8" if theme == "light" else "#32344B",
-            "icon_color" : "#e8e8e8" if theme == "light" else "#e5e7eb",
-            "bgcolor" : "#ffffff" if theme == "light" else "#050624",
-            "active" : "black" if theme == "light" else "#f7d046"
-        }
+        self.color_styles = get_color_styles(theme)  # Get the color styles based on the theme
         self.focus = focus
 
     def build_button(self, input_icon):
@@ -25,7 +22,6 @@ class Footer:
             activity = self.color_styles["active"]
             hoverClr = self.color_styles["bgcolor"]
 
-        
         return IconButton(
             icon=input_icon,
             icon_color=activity,
@@ -43,7 +39,7 @@ class Footer:
         return Container(
             bgcolor=self.color_styles["bgcolor"],
             padding=10,
-            border= border.only(top=border.BorderSide(4,self.color_styles["border"])),
+            border=border.only(top=border.BorderSide(4, self.color_styles["border"])),
             content=Row(
                 controls=buttons,
                 alignment=MainAxisAlignment.SPACE_AROUND,
