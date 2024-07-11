@@ -32,20 +32,29 @@ def build_profile(theme):
                 spacing=0,
                 expand=True  # Make the column take up the full available space in its parent
             ),
-            # Centrally positioned content and floating button
-
-                Container(
-                    alignment=Alignment(0.0, -0.7),  # Center aligns the content within the stack
-                    content=Container(
-                        Text("wher am i"),
-                        width=300,
-                        height=300,
-                        border_radius=35,
-                        bgcolor="purple"
-                    ),
-                    expand=True  # Make sure the container itself takes up the full available space
-                ),
+            # Centrally positioned content with nested container
+            Container(
+                alignment=alignment.Alignment(0.0, -0.7),  # Align the parent container at -0.7 vertically
+                content=Container(
+                    width=300,
+                    height=300,
+                    border_radius=35,
+                    bgcolor="purple",
+                    alignment=alignment.center,  # Center aligns the child within this container
+                    content=
+                    
+                    Container(
+                        bgcolor="yellow",
+                        width=50,
+                        height=50,
+                        border_radius=250,
+                        alignment=alignment.center,  # Center aligns content inside this child container
+                    )
                 
+                
+                ),
+                expand=False  # Allow the parent container to size itself without expanding
+            ),
             Container(
                 bgcolor=color_styles['bgcolor'],
                 border_radius=35,
