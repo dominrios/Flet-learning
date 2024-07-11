@@ -27,27 +27,23 @@ def wrap_page(content, page, theme, focus):
 def wrap_sub_page(content, page, theme):
     header = BackHeader.build_header(theme)
 
-    return Stack(
+    return Column(
         controls=[
             Container(
-                alignment=alignment.top_center,
+                height=90,
+                bgcolor="yellow",
                 content=header,
-                margin=0,
-                padding=0
+                expand=False  # Ensure this container does not expand
             ),
-            Column(
-                controls=[
-                    content,
-                    Container(expand=True)
-                ],
-                expand=True
-            )
+            content,
         ],
-        expand=True
+        expand=True,
+        alignment=MainAxisAlignment.SPACE_BETWEEN,
     )
 
 def main(page: Page):
     page.theme_mode = "dark"
+
 
     def route_change(route):
         page.views.clear()

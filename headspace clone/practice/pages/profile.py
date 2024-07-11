@@ -34,24 +34,49 @@ def build_profile(theme):
             ),
             # Centrally positioned content with nested container
             Container(
-                alignment=alignment.Alignment(0.0, -0.7),  # Align the parent container at -0.7 vertically
+                alignment=alignment.Alignment(0.0, -0.9),  # Align the parent container at -0.7 vertically
                 content=Container(
                     width=300,
                     height=300,
                     border_radius=35,
-                    bgcolor="purple",
+                    #bgcolor="purple",
                     alignment=alignment.center,  # Center aligns the child within this container
-                    content=
-                    
-                    Container(
-                        bgcolor="yellow",
-                        width=50,
-                        height=50,
-                        border_radius=250,
-                        alignment=alignment.center,  # Center aligns content inside this child container
-                    )
-                
-                
+                    content=Column(
+                            controls=[
+                                Container(
+                                    border=border.all(2, color_styles["border"]),
+                                    bgcolor="yellow",
+                                    width=175,
+                                    height=175,
+                                    border_radius=250,
+                                    alignment=alignment.bottom_center,  # Center aligns content inside this child container
+                                ),
+                                Container(
+                                    margin=margin.only(top=10),
+                                    #bgcolor="green",
+                                    width=140,
+                                    height=30,
+                                    content=Text(
+                                        "Dominic Rios",
+                                        text_align=TextAlign.CENTER,
+                                        size=20,
+                                        )
+                                ),
+                                Container(
+                                    height=30,
+                                    width=140,
+                                    #bgcolor="red",
+                                    content=Text(
+                                        value="Joined in 2024",
+                                        text_align=TextAlign.CENTER,
+                                        size=12,
+                                    )
+                                )
+                            ],
+                            spacing=0,
+                            alignment=MainAxisAlignment.START,
+                            horizontal_alignment="center",
+                        )
                 ),
                 expand=False  # Allow the parent container to size itself without expanding
             ),
