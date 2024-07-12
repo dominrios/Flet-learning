@@ -46,7 +46,7 @@ def get_route(string):
         return route
 
 def build_settings_page(theme, page):
-    # Placeholder list of sections with headers and tabs
+    # ADJUST AS NEEDED FOR AS MANY TABS AS NECESSARY
     sections = [
         {
             "header": "Display",
@@ -67,15 +67,14 @@ def build_settings_page(theme, page):
     controls = []
 
     for section in sections:
-        # Add Section Header
+        #header
         controls.append(
             Container(
                 margin=margin.only(bottom=-7, left=5, top=7),
                 content=Text(section["header"], size=14, weight="bold"),
                 )
             )
-        
-        # Add Tabs for the Section
+
         for tab_info in section["tabs"]:
             tab = Tabs(theme, tab_info["title"], tab_info["icon"], page).init_tab()
             controls.append(tab)
