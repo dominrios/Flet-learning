@@ -29,7 +29,7 @@ class Footer:
             icon_size=30,
             mouse_cursor=MouseCursor.CLICK,
             tooltip=self.icon_list[input_icon][1],
-            on_click=lambda e: self.page.go(self.icon_list[input_icon][0])
+            on_click=lambda e: self.page.go(self.icon_list[input_icon][0]) 
         )
 
     def build_footer(self):

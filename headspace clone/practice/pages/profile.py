@@ -2,8 +2,10 @@ import flet as ft
 from flet import *
 from componenets.styles import get_color_styles
 
-def build_profile(theme):
+def build_profile(theme,page):
     color_styles = get_color_styles(theme)
+    page=page
+    page.title = "Profile"
     return Stack(
         [
             # Background for profile page
@@ -78,7 +80,7 @@ def build_profile(theme):
                             horizontal_alignment="center",
                         )
                 ),
-                expand=False  # Allow the parent container to size itself without expanding
+                expand=False
             ),
             Container(
                 bgcolor=color_styles['bgcolor'],
@@ -91,11 +93,12 @@ def build_profile(theme):
                     icon=icons.SETTINGS_OUTLINED,
                     icon_size=30,
                     icon_color=color_styles['icon_color'],
-                    on_click=lambda e: print("hello world"),
+                    tooltip="Settings",
+                    on_click=lambda e: page.go('/profile/settings'),
                     mouse_cursor=MouseCursor.CLICK,
                 ),
-                expand=False  # The floating button does not require expanding
+                expand=False
             ),
         ],
-        expand=True  # Ensure the stack itself takes up the full width available
+        expand=True
     )

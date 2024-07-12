@@ -4,6 +4,8 @@ from pages.home import build_home
 from pages.explore import build_explore
 from pages.saved import build_saved
 from pages.profile import build_profile
+from pages.settings import build_settings_page
+from pages.settings_pages.display import build_display_page
 from componenets.modularFooter import Footer
 from componenets.backHeader import BackHeader
 
@@ -24,8 +26,8 @@ def wrap_page(content, page, theme, focus):
         alignment=MainAxisAlignment.SPACE_BETWEEN,
     )
 
-def wrap_sub_page(content, page, theme):
-    header = BackHeader.build_header(theme)
+def wrap_sub_page(content, page, theme, title="Title", parent="Parent"):
+    header = BackHeader(theme, title, parent, page).build_header()
 
     return Column(
         controls=[
@@ -44,11 +46,11 @@ def wrap_sub_page(content, page, theme):
 def main(page: Page):
     page.theme_mode = "dark"
 
-
     def route_change(route):
         page.views.clear()
 
         if page.route == "/":
+            page.title = "Home"
             page.views.append(
                 View(
                     "/",
@@ -59,6 +61,7 @@ def main(page: Page):
                 )
             )
         elif page.route == "/explore":
+            page.title = "Explore"
             page.views.append(
                 View(
                     "/explore",
@@ -69,6 +72,7 @@ def main(page: Page):
                 )
             )
         elif page.route == "/saved":
+            page.title = "Saved"
             page.views.append(
                 View(
                     "/saved",
@@ -79,23 +83,36 @@ def main(page: Page):
                 )
             )
         elif page.route == "/profile":
+            page.title = "Profile"
             page.views.append(
                 View(
                     "/profile",
                     [
-                        wrap_page(build_profile(page.theme_mode), page, page.theme_mode, "Profile")  
+                        wrap_page(build_profile(page.theme_mode,page), page, page.theme_mode, "Profile")  
                     ],
                     padding=0
                 )
             )
         elif page.route == "/profile/settings":
+            page.title= "Settings"
             page.views.append(
                 View(
                     "/profile/settings",
                     [
-                        wrap_sub_page(build_profile(), page, page.theme_mode)  
+                        wrap_sub_page(build_settings_page(page.theme_mode, page), page, page.theme_mode, "Settings", "profile")
                     ],
-                    padding=0
+                    padding=0,
+                )
+            )
+        elif page.route == "/profile/settings/display":
+            page.title= "Display"
+            page.views.append(
+                View(
+                    "/profile/settings/display",
+                    [
+                        wrap_sub_page(build_display_page(page.theme_mode, page), page, page.theme_mode, "Display", "profile/settings")
+                    ],
+                    padding=0,
                 )
             )
         page.padding = 0
