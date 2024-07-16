@@ -36,10 +36,10 @@ class BackHeader:
                     ),
                     Container(expand=True),  # This empty container expands to fill available space
                     Container(
-                        content=ft.Text(f"{self.title}", color=self.color_styles['icon_color'], size=24),
+                        content=ft.Text(f"{self.title}", color=self.color_styles['text'], size=24),
                         alignment=alignment.center,
                     ),
-                    Container(expand=True)  # This empty container expands to fill available space after the centered content
+                    Container(width=200, expand=True)  # This empty container expands to fill available space after the centered content
                 ],
                 alignment=MainAxisAlignment.START,
                 vertical_alignment=MainAxisAlignment.CENTER,

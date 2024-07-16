@@ -1,11 +1,7 @@
-from math import e
-from multiprocessing import Value
 import flet as ft 
-from flet import * 
+from flet import *
 from componenets.styles import get_color_styles
 from componenets.backHeader import capitalize_first_string
-
-grp_val = "grp_val"
 
 class DisplayPage:
     def __init__(self, switch, theme, page):
@@ -14,13 +10,17 @@ class DisplayPage:
         self.comparason_colors = get_color_styles(switch)
         self.get_colors = get_color_styles(theme)
         self.page = page
-        self.theme = theme
     
+    def radiomode_change(self, e):
+        value = f"You have selected {e.control.value} mode"
+        print(value)
+        
+
     def build_comparasons(self):
         return Column(
             controls=[
                 Container(
-                    #bgcolor="blue",
+                    bgcolor="blue",
                     width=200,
                     margin=margin.symmetric(vertical=10),
                     expand=True,
@@ -167,33 +167,40 @@ class DisplayPage:
                                     alignment=MainAxisAlignment.SPACE_BETWEEN,
                                 )
                             ),
-                            Container(
-                                margin=margin.only(top=-5),
-                                width=200,
-                                #bgcolor="#f54cd166",
-                                content=Column(
-                                    controls=[
-                                        Radio(value=self.switch),
-                                        Container(
-                                            margin=margin.only(top=-15),
-                                            content=Text(value=f"{self.title}", size=22)
-                                        )
-                                    ],
-                                    horizontal_alignment=CrossAxisAlignment.CENTER,
-                                )
-                            )
+                            #Container(
+                            #    content=RadioGroup(
+                            #        value="theme",
+                            #        on_change = self.radiomode_change,
+                            #        content=Column(
+                            #            controls=[
+                            #                Radio(label=self.title, value=self.switch,)
+                            #            ]
+                            #        )
+                            #    )
+                            #)
                         ]
                     )
                 ),
             ]
         ) 
-    
-def radiomode_change(e, page):
-    value = f"You have selected {e.control.value} mode"
-    print(value)
-    page.theme_mode = e.control.value
-    page.update()
-    page.update()
+
+def wrap_for_radio(view):
+    return Container(
+                bgcolor="green",
+                content=Stack(
+                    [
+                        view,
+                        Column(
+                            controls=[
+                                Radio(value="dark",label=""),
+                                Text("Dark"),
+                            ],
+                            horizontal_alignment=CrossAxisAlignment.CENTER,
+                            alignment = MainAxisAlignment.END,
+                        ),
+                    ]
+                )
+            ),
 
 
 
@@ -201,28 +208,65 @@ def build_display_page(theme, page):
     color_styles = get_color_styles(theme)
     light_view = DisplayPage("light", theme, page).build_comparasons()
     dark_view = DisplayPage("dark", theme, page).build_comparasons()
-    #flip_to = {"dark": "light", "light": "dark"}
-    views = [light_view, dark_view]
 
     return Container(
         expand=True,
-        #bgcolor="orange",
+        bgcolor="orange",
         padding=padding.symmetric(horizontal=10),
         content=Column(
             controls=[
                 Container(
                     bgcolor=color_styles['component'],
-                    height=450,
-                    #expand=True,
+                    height=100,
+                    expand=True,
                     content=RadioGroup(
                         value = theme,
-                        on_change = lambda e: radiomode_change(e, page),
                         content=Row(
-                            controls=views,
+                            #controls=views,
+                            controls=[
+                                # I CAN TOTALLY MAKE THESE AN OBJECT
+                                Container(
+                                    bgcolor="green",
+                                    content=Stack(
+                                        [
+                                            dark_view,
+                                            Column(
+                                                controls=[
+                                                    Radio(value="dark",label=""),
+                                                    Text("Dark"),
+                                                ],
+                                                horizontal_alignment=CrossAxisAlignment.CENTER,
+                                                alignment = MainAxisAlignment.END,
+                                            )
+                                        ]
+                                    )
+                                ),
+                                Container(
+                                    bgcolor="green",
+                                    content=Stack(
+                                        [
+                                            dark_view,
+                                            Column(
+                                                controls=[
+                                                    Radio(value="dark",label=""),
+                                                    Text("Dark"),
+                                                ],
+                                                horizontal_alignment=CrossAxisAlignment.CENTER,
+                                                alignment = MainAxisAlignment.END,
+                                            )
+                                        ]
+                                    )
+                                ),
+                            ],
                             alignment=MainAxisAlignment.CENTER,
                             spacing=20,
                         ),
                     )
+                ),
+                Container(
+                    bgcolor="green",
+                    height=200,
+                    expand=True
                 ),
             ]
         )
