@@ -5,9 +5,9 @@ from pages.profile import build_profile
 from pages.settings import build_settings_page
 
 ROUTES =  {
-    "/": build_home,
-    "/explore": build_explore,
-    "/saved": build_saved,
-    "/profile": build_profile,
-    "/profile/settings": build_settings_page
+    "/": ["main",build_home],
+    "/explore": ["main",build_explore],
+    "/saved": ["main",build_saved],
+    "/profile": ["main",build_profile],
+    "/profile/settings": ["sub",build_settings_page]
 }

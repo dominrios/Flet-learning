@@ -55,7 +55,7 @@ def main(page: Page):
                 View(
                     "/",
                     [
-                        wrap_page(build_home(), page, page.theme_mode, "Home") 
+                        wrap_page(build_home(page.theme_mode), page, page.theme_mode, "Home") 
                     ],
                     padding=0
                 )

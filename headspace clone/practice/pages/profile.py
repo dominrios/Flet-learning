@@ -12,10 +12,11 @@ def build_profile(theme,page):
             Column(
                 controls=[
                     Container(
-                        gradient=LinearGradient(
-                            begin=alignment.top_center,
-                            end=alignment.bottom_center,
-                            colors=[f"{color_styles['gradient'][0]}", f"{color_styles['gradient'][1]}"]
+                        gradient=RadialGradient(
+                            center = Alignment(0, -1.3),
+                            radius=1,
+                            colors=color_styles['gradient']
+                            #colors=[f"{color_styles['gradient'][0]}", f"{color_styles['gradient'][1]}"]
                         ),
                         padding=0,
                         height=200,

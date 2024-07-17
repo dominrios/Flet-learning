@@ -1,6 +1,7 @@
 import flet as ft
 from flet import *
 from componenets.styles import get_color_styles
+from componenets.methods import get_route
 
 class Tabs:
     def __init__(self, theme, title, icon, page):
@@ -37,13 +38,6 @@ class Tabs:
             on_click= lambda e: self.page.go(self.route)
         )
 
-def get_route(string):
-    lowered = string.casefold()
-    if lowered.find(" ") == -1:
-        return lowered
-    else:
-        route = lowered.replace(" ", "_")
-        return route
 
 def build_settings_page(theme, page):
     # ADJUST AS NEEDED FOR AS MANY TABS AS NECESSARY

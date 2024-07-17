@@ -1,22 +1,23 @@
-import flet as ft
 from flet import *
+from componenets.gradial_background import Background
 
 
-def build_home():
-    return Container(
-        
-        Column(
-            controls=[
-                Container(
-                    Text("Hello poop", color="blue", size=30),
-                    height= 200, 
-                    bgcolor="orange",
-                    alignment= alignment.center,
-                )
-            ],
-            alignment=MainAxisAlignment.START,
-            expand=True  # Ensure Column takes full height available
-        ),
-    bgcolor="green",
-    expand = True,
+def build_home(theme):
+    bg = Background(theme).build_background()
+    print(f"Background: {bg}")
+
+    col = Column(
+        controls=[
+            bg
+        ],
+        expand=True
+    )
+    print(f"Column: {col}")
+
+    return Stack(
+        controls=[
+            col,
+        ],
+        expand=True,
+        alignment=alignment.center,
     )

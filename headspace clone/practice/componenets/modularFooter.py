@@ -17,19 +17,28 @@ class Footer:
 
     def build_button(self, input_icon):
         hoverClr = self.color_styles["active"]
-        activity = self.color_styles["icon_color"]
+        activity = self.color_styles["footer_icon_color"]
         if self.icon_list[input_icon][1] == self.focus:
             activity = self.color_styles["active"]
             hoverClr = self.color_styles["bgcolor"]
 
-        return IconButton(
-            icon=input_icon,
-            icon_color=activity,
-            hover_color=hoverClr,
-            icon_size=30,
-            mouse_cursor=MouseCursor.CLICK,
-            tooltip=self.icon_list[input_icon][1],
-            on_click=lambda e: self.page.go(self.icon_list[input_icon][0]) 
+        return Column(
+            controls=[
+                IconButton(
+                    icon=input_icon,
+                    icon_color=activity,
+                    hover_color=hoverClr,
+                    icon_size=30,
+                    mouse_cursor=MouseCursor.CLICK,
+                    #tooltip=self.icon_list[input_icon][1],
+                    on_click=lambda e: self.page.go(self.icon_list[input_icon][0]) 
+                ),
+                Container(
+                    margin=margin.only(top=-10),
+                    content=Text(f"{self.icon_list[input_icon][1]}", color=activity)
+                )
+            ],
+            horizontal_alignment=CrossAxisAlignment.CENTER,
         )
 
     def build_footer(self):

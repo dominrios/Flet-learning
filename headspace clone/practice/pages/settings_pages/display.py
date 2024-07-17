@@ -5,8 +5,6 @@ from flet import *
 from componenets.styles import get_color_styles
 from componenets.backHeader import capitalize_first_string
 
-grp_val = "grp_val"
-
 class DisplayPage:
     def __init__(self, switch, theme, page):
         self.title = capitalize_first_string(switch)
@@ -16,7 +14,47 @@ class DisplayPage:
         self.page = page
         self.theme = theme
     
+    def mini_icon(self, active):
+        color_to_use = 'footer_icon_color'
+        if active:
+            color_to_use = 'active'
+        return Container(
+                    height=20,
+                    width=20,
+                    border_radius= 25,
+                    bgcolor=self.comparason_colors[color_to_use],
+                    margin=margin.only(bottom=7)
+                )
+    
+    def card_object(self):
+        return Container(
+                    border_radius= 5,
+                    bgcolor=self.comparason_colors['component'],
+                    height=30,
+                    margin=margin.only(left=10, right=30),
+                    alignment=alignment.center,
+                    content=Row(
+                        controls=[
+                            Container(
+                                width=18,
+                                height=18,
+                                bgcolor=self.comparason_colors['icon_color'],
+                                border_radius=15,
+                            ),
+                            Container(
+                                width=70,
+                                height=12,
+                                border_radius= 25,
+                                bgcolor=self.comparason_colors['icon_color'],
+                            )
+                        ]
+                    )
+                )
+
     def build_comparasons(self):
+        icons = [self.mini_icon(True), self.mini_icon(False), self.mini_icon(False), self.mini_icon(False)]
+        cards = [self.card_object() for _ in range(4)]
+
         return Column(
             controls=[
                 Container(
@@ -39,84 +77,11 @@ class DisplayPage:
                                 height=350,
                                 content=Column(
                                     controls=[
-                                        Container(
-                                            height=30
-                                        ),
+                                        Container(height=30),
 
-                                        #should be a card object
-                                        Container(
-                                            border_radius=5,
-                                            bgcolor=self.comparason_colors['component'],
-                                            height=30,
-                                            margin=margin.only(left=10, right=30),
-                                            alignment=alignment.center,
-                                            content=Row(
-                                                controls=[
-                                                    Container(
-                                                        width=18,
-                                                        height=18,
-                                                        bgcolor=self.comparason_colors['icon_color'],
-                                                        border_radius=15,
-                                                    ),
-                                                    Container(
-                                                        width=70,
-                                                        height=20,
-                                                        border_radius = 25,
-                                                        bgcolor=self.comparason_colors['icon_color'],
-                                                    )
-                                                ]
-                                            )
-                                        ),
+                                        # Inserted cards directly into the controls list
+                                        *cards,
 
-                                        #should be a card object
-                                        Container(
-                                            border_radius=5,
-                                            bgcolor=self.comparason_colors['component'],
-                                            height=30,
-                                            margin=margin.only(left=10, right=30),
-                                            alignment=alignment.center,
-                                            content=Row(
-                                                controls=[
-                                                    Container(
-                                                        width=18,
-                                                        height=18,
-                                                        bgcolor=self.comparason_colors['icon_color'],
-                                                        border_radius=15,
-                                                    ),
-                                                    Container(
-                                                        width=70,
-                                                        height=20,
-                                                        border_radius = 25,
-                                                        bgcolor=self.comparason_colors['icon_color'],
-                                                    )
-                                                ]
-                                            )
-                                        ),
-
-                                        #should be a card object
-                                        Container(
-                                            border_radius= 5,
-                                            bgcolor=self.comparason_colors['component'],
-                                            height=30,
-                                            margin=margin.only(left=10, right=30),
-                                            alignment=alignment.center,
-                                            content=Row(
-                                                controls=[
-                                                    Container(
-                                                        width=18,
-                                                        height=18,
-                                                        bgcolor=self.comparason_colors['icon_color'],
-                                                        border_radius=15,
-                                                    ),
-                                                    Container(
-                                                        width=70,
-                                                        height=20,
-                                                        border_radius = 25,
-                                                        bgcolor=self.comparason_colors['icon_color'],
-                                                    )
-                                                ]
-                                            )
-                                        ),
                                         Container(
                                             margin=0,
                                             padding=0,
@@ -125,40 +90,7 @@ class DisplayPage:
                                             border=border.only(top=BorderSide(4, self.comparason_colors['border'])),
                                             bgcolor=self.comparason_colors['bgcolor'],
                                             content=Row(
-                                                [   
-                                                    #should be a mini icon object
-                                                    Container(
-                                                        height=20,
-                                                        width=20,
-                                                        border_radius= 25,
-                                                        bgcolor=self.comparason_colors['active'],
-                                                        margin=margin.only(bottom=7)
-                                                    ),
-                                                    #should be a mini icon object
-                                                    Container(
-                                                        height=20,
-                                                        width=20,
-                                                        border_radius= 25,
-                                                        bgcolor=self.comparason_colors['icon_color'],
-                                                        margin=margin.only(bottom=7)
-                                                    ),
-                                                    #should be a mini icon object
-                                                    Container(
-                                                        height=20,
-                                                        width=20,
-                                                        border_radius= 25,
-                                                        bgcolor=self.comparason_colors['icon_color'],
-                                                        margin=margin.only(bottom=7)
-                                                    ),
-                                                    #should be a mini icon object
-                                                    Container(
-                                                        height=20,
-                                                        width=20,
-                                                        border_radius= 25,
-                                                        bgcolor=self.comparason_colors['icon_color'],
-                                                        margin=margin.only(bottom=7)
-                                                    ),
-                                                ],
+                                                controls=icons,
                                                 alignment=MainAxisAlignment.SPACE_AROUND,
                                             )
                                        ),
@@ -193,9 +125,6 @@ def radiomode_change(e, page):
     print(value)
     page.theme_mode = e.control.value
     page.update()
-    page.update()
-
-
 
 def build_display_page(theme, page):
     color_styles = get_color_styles(theme)
@@ -205,6 +134,7 @@ def build_display_page(theme, page):
     views = [light_view, dark_view]
 
     return Container(
+        margin=margin.only(top=20),
         expand=True,
         #bgcolor="orange",
         padding=padding.symmetric(horizontal=10),
@@ -213,10 +143,11 @@ def build_display_page(theme, page):
                 Container(
                     bgcolor=color_styles['component'],
                     height=450,
+                    border_radius=15,
                     #expand=True,
                     content=RadioGroup(
-                        value = theme,
-                        on_change = lambda e: radiomode_change(e, page),
+                        value=theme,
+                        on_change=lambda e: radiomode_change(e, page),
                         content=Row(
                             controls=views,
                             alignment=MainAxisAlignment.CENTER,
