@@ -1,8 +1,8 @@
 import flet as ft
 from flet import *
 import importlib
-from real.src.routes import route_config, config_page
-from real.components.methods.methods import get_parent, get_route, get_title
+from src.routes import route_config, config_page
+from components.methods.methods import get_parent, get_route, get_title
 
 def main(page: Page):
     page.theme_mode = "dark"
@@ -23,12 +23,13 @@ def main(page: Page):
                 print(f"Error importing module or function: {e}")
                 return
 
-            content = config_page(page_type, view, page, page.theme_mode, page.title, get_parent(page.title))
+            content = config_page(page_type, view, page, page.theme_mode, page.title, page.title, get_parent(page.route))
 
             page.views.append(
                 View(
                     f"{get_route(page.title)}",
-                    [content]
+                    [content],
+                    padding = 0,
                 )
             )
         

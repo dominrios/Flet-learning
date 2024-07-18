@@ -8,8 +8,7 @@ class BackHeader:
         self.title = title
         self.page = page
         self.color_styles = get_color_styles(theme)
-        self.route = f"/{parent}/{capitalize_first_string(title)}"
-        self.back = f"/{parent}"
+        self.back = parent
 
     def build_header(self):
         return Container(

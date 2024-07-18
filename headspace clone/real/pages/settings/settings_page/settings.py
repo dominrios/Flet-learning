@@ -1,14 +1,14 @@
 import flet as ft
 from flet import *
 from components.methods.styles import get_color_styles
-from components.methods.methods import get_route
+from components.methods.methods import establish_route
 
 class Tabs:
     def __init__(self, theme, title, icon, page):
         self.title = title
         self.color_styles = get_color_styles(theme)
         self.icon = icon
-        self.route = f"/profile/settings/{get_route(title)}"
+        self.route = f"/profile/settings/{establish_route(title)}"
         self.page = page
         
 

@@ -30,3 +30,11 @@ def get_parent(string):
         last_slash = string.rfind("/")
         parent = string[:last_slash]
         return parent
+
+def establish_route(string):
+    lowered = string.casefold()
+    if lowered.find(" ") == -1:
+        return lowered
+    else:
+        route = lowered.replace(" ", "_")
+        return route
