@@ -8,6 +8,7 @@ from pages.settings import build_settings_page
 from pages.settings_pages.display import build_display_page
 from componenets.modularFooter import Footer
 from componenets.backHeader import BackHeader
+from routes import route_config
 
 def wrap_page(content, page, theme, focus):
     footer = Footer(page, theme, focus).build_footer()
@@ -55,7 +56,7 @@ def main(page: Page):
                 View(
                     "/",
                     [
-                        wrap_page(build_home(page.theme_mode), page, page.theme_mode, "Home") 
+                        wrap_page(build_home(page.theme_mode, page), page, page.theme_mode, "Home") 
                     ],
                     padding=0
                 )
@@ -66,7 +67,7 @@ def main(page: Page):
                 View(
                     "/explore",
                     [
-                        wrap_page(build_explore(), page, page.theme_mode, "Explore")  # 
+                        wrap_page(build_explore(page.theme_mode, page), page, page.theme_mode, "Explore")  # 
                     ],
                     padding=0
                 )
@@ -77,7 +78,7 @@ def main(page: Page):
                 View(
                     "/saved",
                     [
-                        wrap_page(build_saved(), page, page.theme_mode, "Saved")  
+                        wrap_page(build_saved(page.theme_mode, page), page, page.theme_mode, "Saved")  
                     ],
                     padding=0
                 )
@@ -88,7 +89,7 @@ def main(page: Page):
                 View(
                     "/profile",
                     [
-                        wrap_page(build_profile(page.theme_mode,page), page, page.theme_mode, "Profile")  
+                        wrap_page(build_profile(page.theme_mode, page), page, page.theme_mode, "Profile")  
                     ],
                     padding=0
                 )

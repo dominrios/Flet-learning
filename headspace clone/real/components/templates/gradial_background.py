@@ -1,5 +1,5 @@
 from flet import *
-from src.methods.styles import get_color_styles
+from components.methods.styles import get_color_styles
 
 class Background:
     def __init__(self, theme) -> None:

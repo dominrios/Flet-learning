@@ -1,13 +1,10 @@
-from pages.home import build_home
-from pages.explore import build_explore
-from pages.saved import build_saved
-from pages.profile import build_profile
-from pages.settings import build_settings_page
-
-ROUTES =  {
-    "/": ["main",build_home],
-    "/explore": ["main",build_explore],
-    "/saved": ["main",build_saved],
-    "/profile": ["main",build_profile],
-    "/profile/settings": ["sub",build_settings_page]
+# routes.py
+route_config = {
+    "/": ("pages.home", "build_home"),
+    "/explore": ("pages.explore", "build_explore"),
+    "/saved": ("pages.saved", "build_saved"),
+    "/profile": ("pages.profile", "build_profile"),
+    "/profile/settings": ("pages.settings", "build_settings_page"),
+    "/profile/settings/display": ("pages.settings_pages.display", "build_display_page"),
+    # Add more routes as needed
 }

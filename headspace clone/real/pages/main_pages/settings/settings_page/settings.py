@@ -1,7 +1,7 @@
 import flet as ft
 from flet import *
-from componenets.styles import get_color_styles
-from componenets.methods import get_route
+from components.methods.styles import get_color_styles
+from components.methods.methods import get_route
 
 class Tabs:
     def __init__(self, theme, title, icon, page):
@@ -53,7 +53,7 @@ def build_settings_page(theme, page):
             "header": "Sound",
             "tabs": [
                 {"title": "Volume Control", "icon": icons.VOLUME_UP_ROUNDED},
-                {"title": "Mute", "icon": icons.VOLUME_OFF_ROUNDED},
+                {"title": "Mute", "icon": icons.VOLUME_OFF_ROUNDED}
             ]
         }
     ]

@@ -1,7 +1,7 @@
 import flet as ft 
 from flet import * 
-from componenets.styles import get_color_styles
-from componenets.methods import capitalize_first_string
+from components.methods.styles import get_color_styles
+from components.methods.methods import capitalize_first_string
 
 class BackHeader:
     def __init__(self, theme, title, parent, page):
@@ -29,15 +29,15 @@ class BackHeader:
                             tooltip="Back",
                             on_click=lambda e: self.page.go(self.back)),
                     ),
-                    Container(expand=True),  # This empty container expands to fill available space
+                    #Container(expand=True),#buffer container to center 
                     Container(
                         content=ft.Text(f"{self.title}", color=self.color_styles['text'], size=24),
-                        alignment=alignment.Alignment(0.0 ,0.0),
+                        alignment=alignment.center,
                     ),
-                    Container(expand=True)  # This empty container expands to fill available space after the centered content
+                    Container(width=200, expand=True)  
                 ],
-                alignment=MainAxisAlignment.SPACE_BETWEEN,
+                alignment=MainAxisAlignment.START,
                 vertical_alignment=MainAxisAlignment.CENTER,
-                expand=True  # Ensure the row takes up the full width available
+                expand=True 
             )
         )

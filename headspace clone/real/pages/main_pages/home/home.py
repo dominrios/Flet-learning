@@ -1,5 +1,5 @@
 from flet import *
-from componenets.gradial_background import Background
+from components.templates.gradial_background import Background
 
 
 def build_home(theme, page):

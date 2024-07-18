@@ -1,6 +1,6 @@
 import flet as ft
 from flet import *
-from componenets.styles import get_color_styles
+from components.methods.styles import get_color_styles
 
 def build_profile(theme, page):
     color_styles = get_color_styles(theme)
