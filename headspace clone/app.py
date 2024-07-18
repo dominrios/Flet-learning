@@ -1,8 +1,8 @@
 import flet as ft
 from flet import *
 import importlib
-from routes import route_config, config_page
-from components.methods.methods import get_parent, get_route, get_title
+from real.src.routes import route_config, config_page
+from real.components.methods.methods import get_parent, get_route, get_title
 
 def main(page: Page):
     page.theme_mode = "dark"
