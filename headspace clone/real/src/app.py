@@ -15,7 +15,7 @@ def main(page: Page):
             
             module_path, build_func_name, page_type = route_config[page.route]
 
-            try:
+            try: 
                 module = importlib.import_module(module_path)
                 build_func = getattr(module, build_func_name)
                 view = build_func(page.theme_mode, page)

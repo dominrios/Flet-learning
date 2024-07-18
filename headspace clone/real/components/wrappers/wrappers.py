@@ -2,7 +2,7 @@ from flet import Column, MainAxisAlignment, Container
 from components.modular_components.modularFooter import Footer
 from components.modular_components.backHeader import BackHeader
 
-#                                     title
+#                    HELP ME                  title
 def encase_page(content, page, theme, focus, title="Title", parent="Parent"):
     footer = Footer(page, theme, focus).build_footer()
     header = BackHeader(theme, title, parent, page)
